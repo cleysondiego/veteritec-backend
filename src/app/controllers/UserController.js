@@ -8,7 +8,9 @@ class UserController {
       return res.status(400).json({ error: 'User already exists.' });
     }
 
-    await User.create({ name, email, password });
+    const clinic = req.clinicId;
+
+    await User.create({ name, email, password, clinic });
 
     return res.status(201).json({ name, email });
   }
