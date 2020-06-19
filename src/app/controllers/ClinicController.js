@@ -4,7 +4,7 @@ class ClinicController {
   async index(req, res) {
     const clinics = await Clinic.find();
 
-    return res.status(200).json(clinics);
+    return res.status(200).json({ clinics });
   }
 
   async store(req, res) {
