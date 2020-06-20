@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+
 import Clinic from '../models/Clinic';
 
 const { ObjectId } = mongoose.Types;

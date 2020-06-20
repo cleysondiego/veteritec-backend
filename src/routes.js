@@ -2,6 +2,7 @@ import { Router } from 'express';
 
 import authMiddleware from './app/middlewares/auth';
 import clinicMiddleware from './app/middlewares/clinic';
+import clinicUserMiddleware from './app/middlewares/clinicUser';
 
 import ClinicController from './app/controllers/ClinicController';
 import CustomerController from './app/controllers/CustomerController';
@@ -16,11 +17,12 @@ routes.post('/clinics', ClinicController.store);
 
 routes.use(clinicMiddleware);
 
-routes.post('/users', UserController.store);
-
 routes.post('/sessions', SessionController.store);
 
+routes.post('/users', UserController.store);
+
 routes.use(authMiddleware);
+routes.use(clinicUserMiddleware);
 
 routes.get('/customers', CustomerController.index);
 routes.post('/customers', CustomerController.store);

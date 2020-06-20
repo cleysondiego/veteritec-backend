@@ -14,7 +14,11 @@ class SessionController {
       return res.status(400).json({ error: 'Invalid password.' });
     }
 
-    const { name } = user;
+    const { name, clinic } = user;
+
+    if (req.clinicId !== String(clinic)) {
+      return res.status(400).json({ error: 'Clinic invalid for this user.' });
+    }
 
     return res.json({ user: { email, name }, token: User.generateToken(user) });
   }
