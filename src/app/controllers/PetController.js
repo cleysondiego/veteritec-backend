@@ -10,7 +10,7 @@ class PetController {
     try {
       const pets = await Pet.find({ customer: new ObjectId(customerId) });
 
-      return res.status(200).json(pets);
+      return res.status(200).json({ pets });
     } catch (error) {
       return res
         .status(400)

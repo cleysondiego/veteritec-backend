@@ -5,7 +5,7 @@ class CustomerController {
     const clinic = req.clinicId;
     const customers = await Customer.find({ clinic });
 
-    return res.status(200).json(customers);
+    return res.status(200).json({ customers });
   }
 
   async store(req, res) {
