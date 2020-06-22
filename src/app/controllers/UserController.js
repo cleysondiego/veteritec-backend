@@ -3,8 +3,9 @@ import User from '../models/User';
 class UserController {
   async store(req, res) {
     const { email, password, name } = req.body;
+    const { clinicId } = req.headers;
 
-    if (await User.findOne({ email })) {
+    if (await User.findOne({ email, clinicid: clinicId })) {
       return res.status(400).json({ error: 'User already exists.' });
     }
 
