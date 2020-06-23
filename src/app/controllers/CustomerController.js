@@ -1,4 +1,7 @@
+import mongoose from 'mongoose';
 import Customer from '../models/Customer';
+
+const { ObjectId } = mongoose.Types;
 
 class CustomerController {
   async index(req, res) {
@@ -82,6 +85,16 @@ class CustomerController {
     }
 
     return res.status(200).json(customer);
+  }
+
+  async delete(req, res) {
+    const { _id } = req.params;
+
+    if (!(await Customer.deleteOne({ _id: new ObjectId(_id) }))) {
+      return res.status(400).json({ error: 'Customer not found.' });
+    }
+
+    return res.status(200);
   }
 }
 
