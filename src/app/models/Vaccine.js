@@ -14,6 +14,11 @@ const VaccineSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    clinic: {
+      type: mongoose.Types.ObjectId,
+      ref: 'Clinic',
+      required: true,
+    },
     veterinary: {
       type: mongoose.Types.ObjectId,
       ref: 'User',

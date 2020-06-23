@@ -13,12 +13,14 @@ class VaccineController {
   }
 
   async store(req, res) {
+    const clinic = req.clinicId;
     const { date, hour, description, veterinary, customer, pet } = req.body;
 
     const vaccine = await Vaccine.create({
       date,
       hour,
       description,
+      clinic: new ObjectId(clinic),
       veterinary: new ObjectId(veterinary),
       customer: new ObjectId(customer),
       pet: new ObjectId(pet),
