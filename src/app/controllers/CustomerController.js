@@ -76,6 +76,10 @@ class CustomerController {
       }
     );
 
+    if (!customer) {
+      return res.status(400).json({ error: 'Customer not found.' });
+    }
+
     return res.status(200).json(customer);
   }
 }
