@@ -79,6 +79,14 @@ class PetController {
 
     return res.status(200).json(pet);
   }
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    await Pet.deleteOne({ _id: new ObjectId(id) });
+
+    return res.status(200).json({ success: 'Deletado com sucesso' });
+  }
 }
 
 export default new PetController();
