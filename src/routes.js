@@ -32,6 +32,7 @@ routes.put('/customers', CustomerController.change);
 
 routes.get('/pets', PetController.index);
 routes.post('/pets', PetController.store);
+routes.put('/pets', PetController.change);
 
 routes.get('/vaccines', VaccineController.index);
 routes.post('/vaccines', VaccineController.store);

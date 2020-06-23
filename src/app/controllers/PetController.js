@@ -43,6 +43,41 @@ class PetController {
 
     return res.status(201).json(pet);
   }
+
+  async change(req, res) {
+    const {
+      id,
+      name,
+      birth,
+      species,
+      breed,
+      weight,
+      comments,
+      customer,
+    } = req.body;
+
+    const clinic = req.clinicId;
+
+    const pet = await Pet.findOneAndUpdate(
+      { _id: new ObjectId(id), clinic },
+      {
+        name,
+        birth,
+        species,
+        breed,
+        weight,
+        comments,
+        customer: new ObjectId(customer),
+        clinic: new ObjectId(clinic),
+      }
+    );
+
+    if (!pet) {
+      return res.status(400).json({ error: 'Pet not found.' });
+    }
+
+    return res.status(200).json(pet);
+  }
 }
 
 export default new PetController();
