@@ -88,9 +88,9 @@ class CustomerController {
   }
 
   async delete(req, res) {
-    const { _id } = req.params;
+    const { id } = req.params;
 
-    if (!(await Customer.deleteOne({ _id: new ObjectId(_id) }))) {
+    if (!(await Customer.deleteOne({ _id: new ObjectId(id) }))) {
       return res.status(400).json({ error: 'Customer not found.' });
     }
 
