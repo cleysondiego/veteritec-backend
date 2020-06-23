@@ -58,7 +58,7 @@ class PetController {
 
     const clinic = req.clinicId;
 
-    const pet = await Pet.updateOne(
+    const pet = await Pet.update(
       { _id: new ObjectId(id), clinic },
       {
         name,

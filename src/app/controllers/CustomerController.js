@@ -60,7 +60,7 @@ class CustomerController {
 
     const clinic = req.clinicId;
 
-    const customer = await Customer.updateOne(
+    const customer = await Customer.update(
       { cpf, clinic },
       {
         cpf,
