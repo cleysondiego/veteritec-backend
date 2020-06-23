@@ -32,7 +32,7 @@ routes.post('/customers', CustomerController.store);
 routes.get('/pets', PetController.index);
 routes.post('/pets', PetController.store);
 
-routes.get('/vaccines/', VaccineController.index);
-routes.get('/vaccines', VaccineController.store);
+routes.get('/vaccines', VaccineController.index);
+routes.post('/vaccines', VaccineController.store);
 
 export default routes;
