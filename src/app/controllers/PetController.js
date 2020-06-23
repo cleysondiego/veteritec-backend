@@ -58,7 +58,7 @@ class PetController {
 
     const clinic = req.clinicId;
 
-    const pet = await Pet.update(
+    const pet = await Pet.findOneAndUpdate(
       { _id: new ObjectId(id), clinic },
       {
         name,
@@ -69,7 +69,8 @@ class PetController {
         comments,
         customer: new ObjectId(customer),
         clinic: new ObjectId(clinic),
-      }
+      },
+      { new: true }
     );
 
     if (!pet) {

@@ -60,7 +60,7 @@ class CustomerController {
 
     const clinic = req.clinicId;
 
-    const customer = await Customer.update(
+    const customer = await Customer.findOneAndUpdate(
       { cpf, clinic },
       {
         cpf,
@@ -73,7 +73,8 @@ class CustomerController {
         cellNumber: cellNumber !== undefined ? cellNumber : '',
         email,
         clinic,
-      }
+      },
+      { new: true }
     );
 
     if (!customer) {
