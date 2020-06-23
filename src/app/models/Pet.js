@@ -31,6 +31,11 @@ const PetSchema = new mongoose.Schema(
       ref: 'Customer',
       required: true,
     },
+    clinic: {
+      type: mongoose.Types.ObjectId,
+      ref: 'Clinic',
+      required: true,
+    },
   },
   {
     timestamps: true,

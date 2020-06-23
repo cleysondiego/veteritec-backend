@@ -29,7 +29,7 @@ routes.use(clinicUserMiddleware);
 routes.get('/customers', CustomerController.index);
 routes.post('/customers', CustomerController.store);
 
-routes.get('/pets/', PetController.index);
+routes.get('/pets', PetController.index);
 routes.post('/pets', PetController.store);
 
 routes.get('/vaccines/', VaccineController.index);

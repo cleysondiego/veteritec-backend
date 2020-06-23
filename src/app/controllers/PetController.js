@@ -28,6 +28,8 @@ class PetController {
         .json({ error: 'Pet already registered for this customer.' });
     }
 
+    const clinic = req.clinicId;
+
     const pet = await Pet.create({
       name,
       birth,
@@ -36,6 +38,7 @@ class PetController {
       weight,
       comments,
       customer: new ObjectId(customer),
+      clinic: new ObjectId(clinic),
     });
 
     return res.status(201).json(pet);
