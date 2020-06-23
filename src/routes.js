@@ -38,6 +38,7 @@ routes.delete('/pets/:id', PetController.delete);
 
 routes.get('/vaccines', VaccineController.index);
 routes.post('/vaccines', VaccineController.store);
+routes.put('/vaccines', VaccineController.change);
 routes.delete('/vaccines/:id', VaccineController.delete);
 
 export default routes;
