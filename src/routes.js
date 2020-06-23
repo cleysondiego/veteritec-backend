@@ -29,6 +29,7 @@ routes.use(clinicUserMiddleware);
 routes.get('/customers', CustomerController.index);
 routes.post('/customers', CustomerController.store);
 routes.put('/customers', CustomerController.change);
+routes.delete('/customers/:id', CustomerController.delete);
 
 routes.get('/pets', PetController.index);
 routes.post('/pets', PetController.store);
