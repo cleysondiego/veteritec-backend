@@ -34,8 +34,10 @@ routes.delete('/customers/:id', CustomerController.delete);
 routes.get('/pets', PetController.index);
 routes.post('/pets', PetController.store);
 routes.put('/pets', PetController.change);
+routes.delete('/customers/:id', PetController.delete);
 
 routes.get('/vaccines', VaccineController.index);
 routes.post('/vaccines', VaccineController.store);
+routes.delete('/vaccines', VaccineController.delete);
 
 export default routes;

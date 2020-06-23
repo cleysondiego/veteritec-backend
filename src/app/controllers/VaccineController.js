@@ -28,6 +28,14 @@ class VaccineController {
 
     return res.status(201).json({ vaccine });
   }
+
+  async delete(req, res) {
+    const { id } = req.params;
+
+    await Vaccine.deleteOne({ _id: new ObjectId(id) });
+
+    return res.status(200).json({ success: 'Deletado com sucesso' });
+  }
 }
 
 export default new VaccineController();
