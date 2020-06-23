@@ -5,17 +5,10 @@ const { ObjectId } = mongoose.Types;
 
 class PetController {
   async index(req, res) {
-    const { customerId } = req.params;
+    const clinic = req.clinicId;
+    const pets = await Pet.find({ clinic });
 
-    try {
-      const pets = await Pet.find({ customer: new ObjectId(customerId) });
-
-      return res.status(200).json({ pets });
-    } catch (error) {
-      return res
-        .status(400)
-        .json({ error: 'Pet not founded by this customer.' });
-    }
+    return res.status(200).json({ pets });
   }
 
   async store(req, res) {
@@ -29,7 +22,7 @@ class PetController {
       customer,
     } = req.body;
 
-    if (await Pet.findOne({ name, customer })) {
+    if (await Pet.findOne({ name, customer: new ObjectId(customer) })) {
       return res
         .status(400)
         .json({ error: 'Pet already registered for this customer.' });
@@ -42,7 +35,7 @@ class PetController {
       breed,
       weight,
       comments,
-      customer,
+      customer: new ObjectId(customer),
     });
 
     return res.status(201).json(pet);

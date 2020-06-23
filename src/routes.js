@@ -9,6 +9,7 @@ import CustomerController from './app/controllers/CustomerController';
 import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import PetController from './app/controllers/PetController';
+import VaccineController from './app/controllers/VaccineController';
 
 const routes = new Router();
 
@@ -19,6 +20,7 @@ routes.use(clinicMiddleware);
 
 routes.post('/sessions', SessionController.store);
 
+routes.get('/users', UserController.index);
 routes.post('/users', UserController.store);
 
 routes.use(authMiddleware);
@@ -27,7 +29,10 @@ routes.use(clinicUserMiddleware);
 routes.get('/customers', CustomerController.index);
 routes.post('/customers', CustomerController.store);
 
-routes.get('/pets/:customerId', PetController.index);
+routes.get('/pets/', PetController.index);
 routes.post('/pets', PetController.store);
+
+routes.get('/vaccines/', VaccineController.index);
+routes.get('/vaccines', VaccineController.store);
 
 export default routes;

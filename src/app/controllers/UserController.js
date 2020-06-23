@@ -1,9 +1,17 @@
 import mongoose from 'mongoose';
+
 import User from '../models/User';
 
 const { ObjectId } = mongoose.Types;
 
 class UserController {
+  async index(req, res) {
+    const clinic = req.clinicId;
+    const users = await User.find({ clinic });
+
+    return res.status(200).json({ users });
+  }
+
   async store(req, res) {
     const { email, password, name } = req.body;
     const { clinicId } = req;
