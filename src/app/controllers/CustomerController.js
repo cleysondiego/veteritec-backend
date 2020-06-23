@@ -44,6 +44,40 @@ class CustomerController {
 
     return res.status(201).json(customer);
   }
+
+  async change(req, res) {
+    const {
+      cpf,
+      name,
+      zipcode,
+      street,
+      number,
+      neighborhood,
+      phoneNumber,
+      cellNumber,
+      email,
+    } = req.body;
+
+    const clinic = req.clinicId;
+
+    const customer = await Customer.findOneAndUpdate(
+      { cpf, clinic },
+      {
+        cpf,
+        name,
+        zipcode,
+        street,
+        number,
+        neighborhood,
+        phoneNumber: phoneNumber !== undefined ? phoneNumber : '',
+        cellNumber: cellNumber !== undefined ? cellNumber : '',
+        email,
+        clinic,
+      }
+    );
+
+    return res.status(200).json(customer);
+  }
 }
 
 export default new CustomerController();
