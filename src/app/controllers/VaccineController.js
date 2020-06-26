@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 
 import Vaccine from '../models/Vaccine';
+import Customer from '../models/Customer';
+import Pet from '../models/Pet';
 
 const { ObjectId } = mongoose.Types;
 
@@ -16,10 +18,23 @@ class VaccineController {
     const clinic = req.clinicId;
     const { date, hour, description, veterinary, customer, pet } = req.body;
 
+    const { name: nameCustomer } = await Customer.findById({
+      _id: new ObjectId(customer),
+    });
+
+    const { name: namePet } = await Pet.findById({ _id: new ObjectId(pet) });
+
+    const [nameCustomerParsed] = nameCustomer.split(' ');
+
+    const [namePetParsed] = namePet.split(' ');
+
+    const displayName = `${nameCustomerParsed} - ${namePetParsed} - ${date} - ${hour}`;
+
     const vaccine = await Vaccine.create({
       date,
       hour,
       description,
+      displayName,
       clinic: new ObjectId(clinic),
       veterinary: new ObjectId(veterinary),
       customer: new ObjectId(customer),
