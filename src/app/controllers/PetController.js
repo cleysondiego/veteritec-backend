@@ -12,7 +12,7 @@ class PetController {
       const pets = await Pet.find({
         clinic,
         customer,
-      });
+      }).sort({ createdAt: -1 });
 
       return res.status(200).json({ pets });
     }

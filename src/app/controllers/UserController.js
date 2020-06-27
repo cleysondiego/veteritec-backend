@@ -7,7 +7,7 @@ const { ObjectId } = mongoose.Types;
 class UserController {
   async index(req, res) {
     const clinic = req.clinicId;
-    const users = await User.find({ clinic });
+    const users = await User.find({ clinic }).sort({ createdAt: -1 });
 
     return res.status(200).json({ users });
   }

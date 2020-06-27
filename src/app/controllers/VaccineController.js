@@ -9,7 +9,7 @@ const { ObjectId } = mongoose.Types;
 class VaccineController {
   async index(req, res) {
     const clinic = req.clinicId;
-    const vaccines = await Vaccine.find({ clinic });
+    const vaccines = await Vaccine.find({ clinic }).sort({ createdAt: -1 });
 
     return res.status(200).json({ vaccines });
   }

@@ -2,7 +2,7 @@ import Clinic from '../models/Clinic';
 
 class ClinicController {
   async index(req, res) {
-    const clinics = await Clinic.find();
+    const clinics = await Clinic.find().sort({ createdAt: -1 });
 
     return res.status(200).json({ clinics });
   }

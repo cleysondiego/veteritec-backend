@@ -6,7 +6,7 @@ const { ObjectId } = mongoose.Types;
 class CustomerController {
   async index(req, res) {
     const clinic = req.clinicId;
-    const customers = await Customer.find({ clinic });
+    const customers = await Customer.find({ clinic }).sort({ createdAt: -1 });
 
     return res.status(200).json({ customers });
   }
