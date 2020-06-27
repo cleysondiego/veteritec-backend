@@ -48,12 +48,25 @@ class VaccineController {
     const clinic = req.clinicId;
     const { id, date, hour, description, veterinary, customer, pet } = req.body;
 
+    const { name: nameCustomer } = await Customer.findById({
+      _id: new ObjectId(customer),
+    });
+
+    const { name: namePet } = await Pet.findById({ _id: new ObjectId(pet) });
+
+    const [nameCustomerParsed] = nameCustomer.split(' ');
+
+    const [namePetParsed] = namePet.split(' ');
+
+    const displayName = `${nameCustomerParsed} - ${namePetParsed} - ${date} - ${hour}`;
+
     const vaccine = await Vaccine.findOneAndUpdate(
       { _id: new ObjectId(id) },
       {
         date,
         hour,
         description,
+        displayName,
         clinic: new ObjectId(clinic),
         veterinary: new ObjectId(veterinary),
         customer: new ObjectId(customer),
