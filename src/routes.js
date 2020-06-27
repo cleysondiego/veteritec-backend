@@ -31,6 +31,7 @@ routes.post('/customers', CustomerController.store);
 routes.put('/customers', CustomerController.change);
 routes.delete('/customers/:id', CustomerController.delete);
 
+routes.get('/pets/:customerId', PetController.index);
 routes.get('/pets', PetController.index);
 routes.post('/pets', PetController.store);
 routes.put('/pets', PetController.change);

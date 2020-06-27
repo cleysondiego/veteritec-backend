@@ -6,6 +6,16 @@ const { ObjectId } = mongoose.Types;
 class PetController {
   async index(req, res) {
     const clinic = req.clinicId;
+    const { customerId: customer } = req.params;
+
+    if (customer) {
+      const pets = await Pet.find({
+        clinic,
+        customer,
+      });
+
+      return res.status(200).json({ pets });
+    }
     const pets = await Pet.find({ clinic });
 
     return res.status(200).json({ pets });
