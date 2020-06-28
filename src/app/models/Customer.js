@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+import Pet from './Pet';
+
 const CustomerSchema = new mongoose.Schema(
   {
     cpf: {
@@ -48,5 +50,10 @@ const CustomerSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+CustomerSchema.pre('deleteOne', async function (next) {
+  await Pet.deleteMany({ customer: this.getQuery()._id });
+  return next();
+});
 
 export default mongoose.model('Customer', CustomerSchema);

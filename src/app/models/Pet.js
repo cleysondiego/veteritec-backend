@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+import Vaccine from './Vaccine';
+
 const PetSchema = new mongoose.Schema(
   {
     name: {
@@ -45,5 +47,15 @@ const PetSchema = new mongoose.Schema(
     timestamps: true,
   }
 );
+
+PetSchema.pre('deleteOne', async function (next) {
+  await Vaccine.deleteMany({ pet: this.getQuery()._id });
+  return next();
+});
+
+PetSchema.pre('deleteMany', async function (next) {
+  await Vaccine.deleteMany({ customer: this.getQuery().customer });
+  return next();
+});
 
 export default mongoose.model('Pet', PetSchema);

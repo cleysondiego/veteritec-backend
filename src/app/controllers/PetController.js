@@ -16,7 +16,7 @@ class PetController {
 
       return res.status(200).json({ pets });
     }
-    const pets = await Pet.find({ clinic });
+    const pets = await Pet.find({ clinic }).sort({ createdAt: -1 });
 
     return res.status(200).json({ pets });
   }
