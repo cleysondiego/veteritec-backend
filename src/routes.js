@@ -17,8 +17,8 @@ const routes = new Router();
 routes.get('/clinics', ClinicController.index);
 routes.post('/clinics', ClinicController.store);
 
-routes.use(decryptMiddleware);
 routes.use(clinicMiddleware);
+routes.use(decryptMiddleware);
 
 routes.post('/sessions', SessionController.store);
 

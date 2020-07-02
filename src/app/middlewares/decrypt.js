@@ -6,17 +6,21 @@ export default async (req, res, next) => {
 
     const keyString =
       '-----BEGIN PRIVATE KEY-----\n' +
-      'MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAg0p5W8cWHrvBOhJt\n' +
-      'Bqmi46qP5DDU1xqqLl9r1LyJ01luuieP9ntQrJ3n8C4KNM1Hm5uf26uwzpPUE5Se\n' +
-      'fLiSAwIDAQABAkBXuAuLeWHbGOEKNsNnXzG44P2Qndum+GbZ4uE92tZPQYqru1yA\n' +
-      'w1s0XcV/SXeVUZ0niIo7LlI+3tQ/G6LgVj2RAiEA1ccgkm2nl6bXyQJqwkfVr0Is\n' +
-      '85g/coOC3ADOwo7d5JsCIQCdOLScrk9G1KVjHDCg5hExsKhliMPGPwolP94Ux836\n' +
-      'uQIgb2Ux3dtx5x4zdzThOJeCC68qCU0eUqegus9Y7hzQF10CIQCbYamOl+8dr5ds\n' +
-      'pjWhLv+bPl6PSmVCDpd2TPKtUvLNcQIgMwkpz+I5zlgtapdCgTFReA1gOJlH6NLA\n' +
-      '8alIFtlIRsg=\n' +
+      'MIIBVAIBADANBgkqhkiG9w0BAQEFAASCAT4wggE6AgEAAkEAyRlNae37NbQxc89V\n' +
+      'hBn5ywEKIky6F9EzlctqTnhP/SPT2gMSO6TsPtKzUWFc9QhSVhO8fj6+Cfv4xUoQ\n' +
+      '9qitfwIDAQABAkEAmTcZ8DdNSmF7vAyfzwIreyvTmMZ0kmjlsJ9G43pvFyG3JfbC\n' +
+      'wDptJmIa+u8ZJLv5I32AcXs1cBT9qN9LDXs84QIhAOXFpIl8moPRzmaTV6QxtrtY\n' +
+      'tvi7Myzo07oWaMDR/IQjAiEA4A3GxajtV1awAV7Zpp1FVkUA3oJn9eNvvzePcilw\n' +
+      'aPUCIFEvSDeb4yx4USlFHk5RknMXoW65FhfkHAtAJ7sZdtNpAiAEtuV+1T4hP1a2\n' +
+      'wKstwVNrLEqHZBER8HYyfNXM3ihaXQIgJwss/ZZMt7DYqYP9D5eBMsgDTM/xrQVu\n' +
+      'lAqhXH0UFNA=\n' +
       '-----END PRIVATE KEY-----';
 
-    key.importKey(keyString);
+    // console.log(key.exportKey('pkcs8-private-pem'));
+
+    // console.log(key.exportKey('pkcs8-public-pem'));
+
+    key.importKey(keyString, 'pkcs8-private-pem');
 
     const { message } = req.body;
 
