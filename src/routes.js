@@ -3,6 +3,7 @@ import { Router } from 'express';
 import authMiddleware from './app/middlewares/auth';
 import clinicMiddleware from './app/middlewares/clinic';
 import clinicUserMiddleware from './app/middlewares/clinicUser';
+import decryptMiddleware from './app/middlewares/decrypt';
 
 import ClinicController from './app/controllers/ClinicController';
 import CustomerController from './app/controllers/CustomerController';
@@ -16,6 +17,7 @@ const routes = new Router();
 routes.get('/clinics', ClinicController.index);
 routes.post('/clinics', ClinicController.store);
 
+routes.use(decryptMiddleware);
 routes.use(clinicMiddleware);
 
 routes.post('/sessions', SessionController.store);
