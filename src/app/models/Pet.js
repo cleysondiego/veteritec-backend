@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 import Vaccine from './Vaccine';
+import Location from './Location';
 
 const PetSchema = new mongoose.Schema(
   {
@@ -50,6 +51,7 @@ const PetSchema = new mongoose.Schema(
 
 PetSchema.pre('deleteOne', async function (next) {
   await Vaccine.deleteMany({ pet: this.getQuery()._id });
+  await Location.deleteMany({ pet: this.getQuery()._id });
   return next();
 });
 

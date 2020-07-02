@@ -11,11 +11,14 @@ import UserController from './app/controllers/UserController';
 import SessionController from './app/controllers/SessionController';
 import PetController from './app/controllers/PetController';
 import VaccineController from './app/controllers/VaccineController';
+import LocationController from './app/controllers/LocationController';
 
 const routes = new Router();
 
 routes.get('/clinics', ClinicController.index);
 routes.post('/clinics', ClinicController.store);
+
+routes.post('/locations', LocationController.store);
 
 routes.use(clinicMiddleware);
 // routes.use(decryptMiddleware);
@@ -43,5 +46,7 @@ routes.get('/vaccines', VaccineController.index);
 routes.post('/vaccines', VaccineController.store);
 routes.put('/vaccines', VaccineController.change);
 routes.delete('/vaccines/:id', VaccineController.delete);
+
+routes.get('/locations/:petId', LocationController.index);
 
 export default routes;
