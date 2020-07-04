@@ -57,6 +57,7 @@ PetSchema.pre('deleteOne', async function (next) {
 
 PetSchema.pre('deleteMany', async function (next) {
   await Vaccine.deleteMany({ customer: this.getQuery().customer });
+  await Location.deleteMany({ pet: this.getQuery()._id });
   return next();
 });
 

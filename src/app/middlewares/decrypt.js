@@ -16,10 +16,6 @@ export default async (req, res, next) => {
       'lAqhXH0UFNA=\n' +
       '-----END PRIVATE KEY-----';
 
-    // console.log(key.exportKey('pkcs8-private-pem'));
-
-    // console.log(key.exportKey('pkcs8-public-pem'));
-
     key.importKey(keyString, 'pkcs8-private-pem');
 
     const { message } = req.body;
