@@ -95,7 +95,7 @@ class CustomerController {
 
     await Log.create({
       user: new ObjectId(userId),
-      type: 'Vacina',
+      type: 'Cliente',
       message,
     });
 

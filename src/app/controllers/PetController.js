@@ -102,7 +102,7 @@ class PetController {
 
     await Log.create({
       user: new ObjectId(userId),
-      type: 'Vacina',
+      type: 'Animal',
       message,
     });
 
