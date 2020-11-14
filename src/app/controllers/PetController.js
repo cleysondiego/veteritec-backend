@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Log from '../models/Log';
 import Pet from '../models/Pet';
 
 const { ObjectId } = mongoose.Types;
@@ -96,6 +97,14 @@ class PetController {
 
   async delete(req, res) {
     const { id } = req.params;
+    const { userId } = req;
+    const { message } = req.body;
+
+    await Log.create({
+      user: new ObjectId(userId),
+      type: 'Vacina',
+      message,
+    });
 
     await Pet.deleteOne({ _id: new ObjectId(id) });
 

@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import Customer from '../models/Customer';
+import Log from '../models/Log';
 
 const { ObjectId } = mongoose.Types;
 
@@ -89,6 +90,14 @@ class CustomerController {
 
   async delete(req, res) {
     const { id } = req.params;
+    const { userId } = req;
+    const { message } = req.body;
+
+    await Log.create({
+      user: new ObjectId(userId),
+      type: 'Vacina',
+      message,
+    });
 
     await Customer.deleteOne({ _id: new ObjectId(id) });
 
