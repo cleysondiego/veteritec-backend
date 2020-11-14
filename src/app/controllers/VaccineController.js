@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import Vaccine from '../models/Vaccine';
 import Customer from '../models/Customer';
 import Pet from '../models/Pet';
+import Log from '../models/Log';
 
 const { ObjectId } = mongoose.Types;
 
@@ -84,6 +85,14 @@ class VaccineController {
 
   async delete(req, res) {
     const { id } = req.params;
+    const { userId } = req;
+    const { message } = req.body;
+
+    await Log.create({
+      user: new ObjectId(userId),
+      type: 'Vacina',
+      message,
+    });
 
     await Vaccine.deleteOne({ _id: new ObjectId(id) });
 
